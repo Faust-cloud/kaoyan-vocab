@@ -11,7 +11,7 @@
 ![Dependencies](https://img.shields.io/badge/Dependencies-0-2f7d6b?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)
 
-[在线预览](#) · [功能](#-功能) · [设计理念](#-设计理念) · [制作过程](#-制作过程)
+`[在线预览](https://faust-cloud.github.io/kaoyan-vocab/)` · [功能](#-功能) · [设计理念](#-设计理念) · [制作过程](#-制作过程)
 
 </div>
 
