@@ -9,7 +9,7 @@
   --paper:#f6f0e4; --paper2:#ece2cd; --card:#fffcf5; --ink:#2b2520; --ink2:#6b6157; --ink3:#a1968a;
   --seal:#c0392b; --blue:#2f5d8a; --line:#e2d7c3;
   --key-bg:#fffaf0; --key-line:#d9c6a3; --ex-bg:#f2efe6; --tip-fg:#8a5a12; --tip-bg:#fbf0d9;
-  --bar-bg:rgba(246,240,228,.95); --roots-bg:#2b2520; --roots-fg:#f6f0e4; --root-accent:#f2c9a0;
+  --bar-bg:rgba(246,240,228,.95);
   --serif-en:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
   --serif-zh:"Songti SC","STSong","Noto Serif SC","SimSun",serif;
   --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
@@ -19,28 +19,28 @@
   --paper:#eef3ee; --paper2:#dde8df; --card:#fbfdfb; --ink:#1f2e2a; --ink2:#55685f; --ink3:#93a59c;
   --seal:#2f7d6b; --blue:#8a5a2b; --line:#cfdcd3;
   --key-bg:#f6faf6; --key-line:#a9c4b5; --ex-bg:#e9f0eb; --tip-fg:#7a4f12; --tip-bg:#f6ecd6;
-  --bar-bg:rgba(238,243,238,.95); --roots-bg:#1f3b34; --roots-fg:#eef3ee; --root-accent:#f0d39a;
+  --bar-bg:rgba(238,243,238,.95);
 }
 /* 海盐 */
 [data-theme="sea"]{
   --paper:#eef3f8; --paper2:#dce6f0; --card:#fbfdff; --ink:#1c2836; --ink2:#526274; --ink3:#93a1b2;
   --seal:#2c62b8; --blue:#b0472f; --line:#d3deea;
   --key-bg:#f6f9fd; --key-line:#a9bfdc; --ex-bg:#e8eef5; --tip-fg:#7d4a10; --tip-bg:#f8eedb;
-  --bar-bg:rgba(238,243,248,.95); --roots-bg:#1d3150; --roots-fg:#eef3f8; --root-accent:#ffd08a;
+  --bar-bg:rgba(238,243,248,.95);
 }
 /* 樱粉 */
 [data-theme="sakura"]{
   --paper:#fbf1f1; --paper2:#f2dfe0; --card:#fffbfb; --ink:#3a2428; --ink2:#7a5a60; --ink3:#b59aa0;
   --seal:#c2456b; --blue:#4b6aa8; --line:#ecd5d8;
   --key-bg:#fff7f8; --key-line:#e3b5bf; --ex-bg:#f6ecee; --tip-fg:#8a4b12; --tip-bg:#fbeedd;
-  --bar-bg:rgba(251,241,241,.95); --roots-bg:#4a2a33; --roots-fg:#fbf1f1; --root-accent:#ffc4cf;
+  --bar-bg:rgba(251,241,241,.95);
 }
 /* 夜读 */
 [data-theme="night"]{
   --paper:#1d1f24; --paper2:#262930; --card:#25282f; --ink:#ece6da; --ink2:#a8a196; --ink3:#6f6a62;
   --seal:#e07a5f; --blue:#8fb8e8; --line:#353943;
   --key-bg:#292c34; --key-line:#4a4f5c; --ex-bg:#2e323b; --tip-fg:#f0c987; --tip-bg:#3a3326;
-  --bar-bg:rgba(29,31,36,.95); --roots-bg:#11131a; --roots-fg:#ece6da; --root-accent:#f2c9a0;
+  --bar-bg:rgba(29,31,36,.95);
 }
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -95,7 +95,13 @@ h1{font-family:var(--sans);font-size:42px;margin:0;letter-spacing:.08em;line-hei
 .btn:hover{border-color:var(--ink2)}
 .btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .btn.star.on{background:var(--seal);border-color:var(--seal);color:#fff}
-.tabs{display:flex;align-items:center;gap:10px;padding:2px 0}
+.tabs{display:flex;align-items:center;gap:10px;padding:2px 0;flex-wrap:wrap}
+/* 板块切换 */
+.boards{display:flex;gap:2px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.boards button{border:none;background:transparent;color:var(--ink2);cursor:pointer;font:inherit;font-size:14px;
+  padding:5px 14px;border-radius:999px;white-space:nowrap}
+.boards button:hover{color:var(--ink)}
+.boards button.on{background:var(--ink);color:var(--paper)}
 .tab{border:none;background:transparent;padding:7px 16px;border-radius:999px;font-size:15px;line-height:1.3;
   color:var(--ink2);cursor:pointer;white-space:nowrap;font-family:var(--serif-en);flex:none}
 .tab:hover{color:var(--ink);background:var(--paper2)}
@@ -116,7 +122,8 @@ h1{font-family:var(--sans);font-size:42px;margin:0;letter-spacing:.08em;line-hei
   padding:12px;box-shadow:0 14px 32px -14px rgba(40,30,20,.35);display:grid;grid-template-columns:repeat(7,40px);gap:6px}
 .upop[hidden]{display:none}
 .ucell{height:36px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--ink);cursor:pointer;
-  font-family:var(--serif-en);font-size:15px;position:relative}
+  font-family:var(--serif-en);font-size:15px;position:relative;padding:0;white-space:nowrap}
+.ucell.long{font-size:12.5px;letter-spacing:-.02em}
 .ucell i{position:absolute;top:-6px;right:-6px;min-width:17px;height:17px;border-radius:9px;padding:0 4px;
   background:var(--blue);color:var(--card);font:600 10.5px/17px var(--sans);font-style:normal}
 /* 过遍记录 */
@@ -202,14 +209,6 @@ body.hide .card.show .m, body.hide .card.show .e, body.hide .card.show .l{filter
 body.hide .card:not(.show)::after{content:"Tap to reveal";position:absolute;right:14px;bottom:10px;font-size:12px;color:var(--ink3)}
 html:lang(zh) body.hide .card:not(.show)::after{content:"点击查看"}
 
-/* 词根板 */
-.roots{background:var(--roots-bg);color:var(--roots-fg);border-radius:16px;padding:22px 24px;margin:10px 0 30px}
-.roots h3{font-family:var(--serif-zh);margin:0 0 14px;font-size:19px}
-.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
-.root{border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px 12px}
-.root b{font-family:var(--serif-en);font-size:19px;color:var(--root-accent)}
-.root span{font-size:13px;margin-left:6px;opacity:.85}
-.root div{font-size:13px;opacity:.75;font-family:var(--serif-en);margin-top:2px}
 .backup{margin-left:auto;display:flex;gap:8px;align-self:center}
 .backup .btn,.brow .btn{height:36px;font-size:13.5px}
 .bpanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:-6px 0 22px}
@@ -230,7 +229,6 @@ html:lang(zh) body.hide .card:not(.show)::after{content:"点击查看"}
   body.hide .card .m,body.hide .card .e,body.hide .card .l,body.hide .card .x{filter:none;opacity:1}
   body.hide .card::after{display:none}
   .card{break-inside:avoid;box-shadow:none}
-  .roots{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
@@ -292,11 +290,54 @@ html:lang(zh) body.hide .card:not(.show)::after{content:"点击查看"}
 <script src="units/u24.js"></script>
 <script src="units/u25.js"></script>
 <script src="units/u26.js"></script>
+<script src="units/b01.js"></script>
+<script src="units/b02.js"></script>
+<script src="units/b03.js"></script>
+<script src="units/b04.js"></script>
+<script src="units/b05.js"></script>
+<script src="units/b06.js"></script>
+<script src="units/b07.js"></script>
+<script src="units/b08.js"></script>
+<script src="units/b09.js"></script>
+<script src="units/b10.js"></script>
+<script src="units/b11.js"></script>
+<script src="units/b12.js"></script>
+<script src="units/b13.js"></script>
+<script src="units/b14.js"></script>
+<script src="units/b15.js"></script>
+<script src="units/b16.js"></script>
+<script src="units/b17.js"></script>
+<script src="units/b18.js"></script>
+<script src="units/b19.js"></script>
+<script src="units/b20.js"></script>
+<script src="units/b21.js"></script>
+<script src="units/b22.js"></script>
+<script src="units/b23.js"></script>
+<script src="units/b24.js"></script>
+<script src="units/b25.js"></script>
+<script src="units/b26.js"></script>
+<script src="units/b27.js"></script>
+<script src="units/b28.js"></script>
+<script src="units/b29.js"></script>
+<script src="units/b30.js"></script>
+<script src="units/s1a.js"></script>
+<script src="units/s1b.js"></script>
+<script src="units/s1c.js"></script>
+<script src="units/s1d.js"></script>
+<script src="units/s2.js"></script>
+<script src="units/s_split.js"></script>
+<script src="units/x1.js"></script>
+<script src="units/x2.js"></script>
+<script src="units/x3.js"></script>
+<script src="units/x4.js"></script>
+<script src="units/x5.js"></script>
+<script src="units/x6.js"></script>
+<script src="units/x7.js"></script>
 <!--UNITS-END-->
 <script src="extra.js"></script>
 <script>
-// 把重点词补充合并进词表
-UNITS.forEach(u => u.sections.forEach(s => s.w.forEach(w => {
+// 把重点词补充合并进词表(只用于必考词,其他板块的同名词不受影响)
+UNITS.filter(u => u.id[0] === "u").forEach(u => u.sections.forEach(s => s.w.forEach(w => {
   const x = window.EXTRA && EXTRA[w[0]];
   if (x && !w[4]) { w[3] = w[3] || ""; w[4] = x; }
 })));
@@ -319,10 +360,11 @@ const S = {
     theme: "Theme", themes: { paper:"Paper", celadon:"Celadon", sea:"Sea Salt", sakura:"Sakura", night:"Night" },
     search: "Search words, meanings or roots, e.g. capere, 拿, obtain",
     hide: "🙈 Hide meanings", hideTitle: "Hide meanings and test yourself",
-    prev: "Previous unit", next: "Next unit", jump: "Jump to a unit", cellPasses: n => ` · ${n}× reviewed`,
+    prev: "Previous unit (←)", next: "Next unit (→)", jump: "Jump to a unit", cellPasses: n => ` · ${n}× reviewed`,
     review: "★ Review", reviewTitle: "Review", searchTitle: "Search",
     entries: n => `${n} entries`, pcount: n => `✓ Reviewed ${n}×`,
     words: n => `${n} ${n === 1 ? "word" : "words"}`, results: n => `${n} ${n === 1 ? "result" : "results"}`,
+    limited: n => ` · showing the top ${n}, keep typing to narrow down`,
     hint: "Hide mode: look at the word and recall its meaning first, then tap the card to check. If you didn’t get it, tap ☆ and review it later under “★ Review”.",
     syn: "Synonyms", listen: "Listen", mark: "Mark for review",
     backup: "Back up", restore: "Restore", copy: "Copy", copied: "Copied", close: "Close",
@@ -341,10 +383,11 @@ const S = {
     theme: "主题", themes: { paper:"纸本", celadon:"青瓷", sea:"海盐", sakura:"樱粉", night:"夜读" },
     search: "搜索单词、释义或词根,如 capere、拿、obtain",
     hide: "🙈 遮住释义", hideTitle: "遮住释义,自己测一测",
-    prev: "上一单元", next: "下一单元", jump: "跳转到单元", cellPasses: n => ` · 已背 ${n} 遍`,
+    prev: "上一单元(←)", next: "下一单元(→)", jump: "跳转到单元", cellPasses: n => ` · 已背 ${n} 遍`,
     review: "★ 错词本", reviewTitle: "错词本", searchTitle: "搜索",
     entries: n => `${n} 个词条`, pcount: n => `✓ 已背 ${n} 遍`,
     words: n => `${n} 个词`, results: n => `${n} 条结果`,
+    limited: n => ` · 只显示最相关的 ${n} 条,多输几个字母可缩小范围`,
     hint: "遮住模式:先看单词回想意思,再点卡片核对。没想起来就点 ☆,之后在“★ 错词本”里复习。",
     syn: "同义替换", listen: "朗读", mark: "加入错词本",
     backup: "备份", restore: "恢复", copy: "复制", copied: "已复制", close: "关闭",
@@ -371,12 +414,15 @@ function applyLang(){
 }
 const fmtTime = ts => new Date(ts).toLocaleString(t("locale"), { month:"short", day:"numeric", hour:"2-digit", minute:"2-digit", hour12:false });
 let state = { unit: store.get("ky_unit", "u1"), hide: false, starOnly: false, q: "" };
-if (!UNITS.find(u => u.id === state.unit)) state.unit = "u1";
+// 上次打开的单元不存在了(比如简单基础词改过编号),回到同板块的第一个单元
+if (!UNITS.find(u => u.id === state.unit)) state.unit = (UNITS.find(u => u.id[0] === String(state.unit)[0]) || UNITS[0]).id;
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 // 把词源里的拉丁/希腊词根加上样式
 const L = "a-zA-Zāēīōūæǣþœé";
-const styleEtym = s => esc(s).replace(new RegExp(`-?[${L}]+(?:[- ][${L}]+)*-?`, "g"), m => `<i>${m}</i>`);
+// 先切分再分别转义,避免把 &amp; 这类转义字符里的字母也套上 <i>
+const styleEtym = s => String(s).split(new RegExp(`(-?[${L}]+(?:[- ][${L}]+)*-?)`, "g"))
+  .map((p, i) => i % 2 ? `<i>${esc(p)}</i>` : esc(p)).join("");
 
 function card(w, unitName){
   const [word, mean, etym, link, x] = w;
@@ -403,14 +449,28 @@ function card(w, unitName){
 const flat = v => v == null ? "" : typeof v === "object" ? Object.values(v).map(flat).join(" ") : String(v);
 const textOf = w => w.map(flat).join(" ");
 
-function rootsBlock(u){
-  if (!u.roots) return "";
-  return `<div class="roots"><h3>💡 Key roots in ${u.name}</h3><div class="rgrid">${
-    u.roots.map(r => `<div class="root"><b>${esc(r[0])}</b><span>${esc(r[1])}</span><div>${esc(r[2])}</div></div>`).join("")
-  }</div></div>`;
-}
-
 const countUnit = u => u.sections.reduce((n, s) => n + s.w.length, 0);
+// 错词本计数只算词表里还存在的词(旧版本里改过名的词不算)
+const ALLW = new Set(); UNITS.forEach(u => u.sections.forEach(s => s.w.forEach(w => ALLW.add(w[0]))));
+const markedCount = () => [...marked].filter(k => ALLW.has(k)).length;
+
+// 板块:按单元 id 的首字母区分(u 必考词 / b 基础词 / s 简单基础词 / x 超纲词)
+const BOARDS = [
+  { k:"u", zh:"必考词", en:"Core" },
+  { k:"b", zh:"基础词", en:"Basic" },
+  { k:"s", zh:"简单基础词", en:"Easy" },
+  { k:"x", zh:"超纲词", en:"Beyond" }
+];
+const boardOf = u => u.id[0];
+const unitsOf = k => UNITS.filter(u => boardOf(u) === k);
+const boardName = k => (BOARDS.find(b => b.k === k) || {})[lang] || "";
+// 记住每个板块上次看到哪个单元
+let boardUnit = store.get("ky_bunit", {});
+function goUnit(id){
+  state.unit = id; state.starOnly = false; state.q = ""; $("#q").value = "";
+  boardUnit[id[0]] = id; store.set("ky_bunit", boardUnit); store.set("ky_unit", id);
+  render(); window.scrollTo({top:0, behavior:"smooth"});
+}
 
 function passBlock(u){
   const list = passes[u.id] || [];
@@ -429,18 +489,23 @@ function histPanel(){
 }
 
 function renderTabs(){
-  const plain = !state.q && !state.starOnly;
-  const i = UNITS.findIndex(u => u.id === state.unit), last = UNITS.length - 1;
+  const plain = !state.q.trim() && !state.starOnly;
+  const cur = UNITS.find(u => u.id === state.unit);
+  const list = unitsOf(boardOf(cur));
+  const i = list.indexOf(cur), last = list.length - 1;
   const num = u => u.name.replace(/^Unit\s*/, "");
-  $("#tabs").innerHTML = `<div class="unav">
+  const boards = BOARDS.filter(b => unitsOf(b.k).length);
+  $("#tabs").innerHTML = (boards.length > 1 ? `<div class="boards">${boards.map(b =>
+      `<button class="${b.k === boardOf(cur) ? "on" : ""}" data-b="${b.k}">${b[lang]}</button>`).join("")}</div>` : "")
+    + `<div class="unav">
       <button class="nbtn" data-nav="-1" title="${t("prev")}"${i === 0 ? " disabled" : ""}>‹</button>
-      <button class="ucur${plain ? "" : " dim"}" data-nav="pick" title="${t("jump")}">${UNITS[i].name}<small>/ ${UNITS.length}</small>
+      <button class="ucur${plain ? "" : " dim"}" data-nav="pick" title="${t("jump")}">${cur.name}<small>/ ${list.length}</small>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m6 9 6 6 6-6"/></svg></button>
       <button class="nbtn" data-nav="1" title="${t("next")}"${i === last ? " disabled" : ""}>›</button>
-      <div class="upop" id="upop" hidden>${UNITS.map(u =>
-        `<button class="ucell${u.id === state.unit ? " on" : ""}" data-u="${u.id}" title="${u.name}${(passes[u.id] || []).length ? t("cellPasses", passes[u.id].length) : ""}">${num(u)}${(passes[u.id] || []).length ? `<i>${passes[u.id].length}</i>` : ""}</button>`).join("")}</div>
+      <div class="upop" id="upop" hidden>${list.map(u =>
+        `<button class="ucell${u.id === state.unit ? " on" : ""}${num(u).length > 3 ? " long" : ""}" data-u="${u.id}" title="${u.name}${(passes[u.id] || []).length ? t("cellPasses", passes[u.id].length) : ""}">${num(u)}${(passes[u.id] || []).length ? `<i>${passes[u.id].length}</i>` : ""}</button>`).join("")}</div>
     </div>
-    <button class="tab review${state.starOnly ? " on" : ""}" data-u="__star">${t("review")} <b>${marked.size}</b></button>`;
+    <button class="tab review${state.starOnly ? " on" : ""}" data-u="__star">${t("review")} <b>${markedCount()}</b></button>`;
 }
 
 function render(){
@@ -450,20 +515,35 @@ function render(){
   let html = "";
 
   if (q || state.starOnly){
-    // 跨单元筛选
-    const hits = [];
+    // 排序:单词完全匹配 > 开头匹配 > 包含 > 释义匹配 > 其他(词源、分组标题等)
+    const rank = (w, s) => {
+      if (!q) return 0;
+      const word = w[0].toLowerCase();
+      if (word === q || word.split(" / ").includes(q)) return 0;
+      if (word.startsWith(q)) return 1;
+      if (word.includes(q)) return 2;
+      if (String(w[1]).toLowerCase().includes(q)) return 3;
+      if (textOf(w).toLowerCase().includes(q) || s.t.toLowerCase().includes(q)) return 4;
+      return -1;
+    };
+    const found = [];
     UNITS.forEach(u => u.sections.forEach(s => s.w.forEach(w => {
       if (state.starOnly && !marked.has(w[0])) return;
-      if (q && !textOf(w).toLowerCase().includes(q) && !s.t.toLowerCase().includes(q)) return;
-      hits.push(card(w, u.name + " · " + s.t));
+      const r = rank(w, s); if (r < 0) return;
+      found.push({ r, w, label: boardName(boardOf(u)) + " · " + u.name + " · " + s.t });
     })));
+    found.sort((a, b) => a.r - b.r);
+    // 结果太多时只显示前 LIMIT 条,避免一次渲染几千张卡片卡顿
+    const LIMIT = 200;
+    const hits = found.slice(0, state.starOnly && !q ? found.length : LIMIT).map(h => card(h.w, esc(h.label)));
     const title = state.starOnly ? (q ? `${t("reviewTitle")} · “${esc(state.q)}”` : t("reviewTitle")) : `${t("searchTitle")} · “${esc(state.q)}”`;
-    const countText = state.starOnly ? t("words", hits.length) : t("results", hits.length);
+    const countText = (state.starOnly ? t("words", found.length) : t("results", found.length))
+      + (hits.length < found.length ? t("limited", hits.length) : "");
     html = `<div class="unit-head"><h2>${title}</h2><span class="count">${countText}</span>${
       state.starOnly && !q ? `<div class="backup"><button class="btn" data-act="export">${t("backup")}</button><button class="btn" data-act="import">${t("restore")}</button></div>` : ""}</div>
       <div class="bpanel" id="bpanel" hidden></div>`;
     html += hits.length ? `<div class="grid">${hits.join("")}</div>`
-      : `<div class="empty">${state.starOnly && !marked.size ? t("noMarked") : t("noMatch")}</div>`;
+      : `<div class="empty">${state.starOnly && !markedCount() ? t("noMarked") : t("noMatch")}</div>`;
   } else {
     const u = UNITS.find(x => x.id === state.unit);
     const np = (passes[u.id] || []).length;
@@ -481,25 +561,45 @@ function render(){
 }
 
 $("#tabs").addEventListener("click", e => {
+  const bd = e.target.closest("[data-b]");
+  if (bd){
+    const list = unitsOf(bd.dataset.b);
+    goUnit(list.find(u => u.id === boardUnit[bd.dataset.b]) ? boardUnit[bd.dataset.b] : list[0].id); return;
+  }
   const n = e.target.closest("[data-nav]");
   if (n){
     if (n.dataset.nav === "pick"){ $("#upop").hidden = !$("#upop").hidden; return; }
-    const i = UNITS.findIndex(u => u.id === state.unit) + Number(n.dataset.nav);
-    if (i < 0 || i >= UNITS.length) return;
-    state.q = ""; $("#q").value = ""; state.starOnly = false;
-    state.unit = UNITS[i].id; store.set("ky_unit", state.unit);
-    render(); window.scrollTo({top:0, behavior:"smooth"}); return;
+    const list = unitsOf(state.unit[0]);
+    const i = list.findIndex(u => u.id === state.unit) + Number(n.dataset.nav);
+    if (i < 0 || i >= list.length) return;
+    goUnit(list[i].id); return;
   }
   const b = e.target.closest("[data-u]"); if (!b) return;
-  state.q = ""; $("#q").value = "";
-  if (b.dataset.u === "__star") { state.starOnly = true; }
-  else { state.unit = b.dataset.u; state.starOnly = false; store.set("ky_unit", state.unit); }
-  render(); window.scrollTo({top:0, behavior:"smooth"});
+  if (b.dataset.u === "__star") {
+    state.q = ""; $("#q").value = ""; state.starOnly = true;
+    render(); window.scrollTo({top:0, behavior:"smooth"}); return;
+  }
+  goUnit(b.dataset.u);
 });
 // 点外面或按 Esc 关掉单元格子
 document.addEventListener("click", e => { const p = $("#upop"); if (p && !p.hidden && !e.target.closest(".unav")) p.hidden = true; });
 document.addEventListener("keydown", e => { const p = $("#upop"); if (e.key === "Escape" && p) p.hidden = true; });
-$("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
+// ← / → 切换上一个、下一个单元(在输入框里打字、搜索或看错词本时不生效)
+document.addEventListener("keydown", e => {
+  if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.target.closest("input, textarea")) return;
+  if (state.q.trim() || state.starOnly) return;
+  const list = unitsOf(state.unit[0]);
+  const i = list.findIndex(u => u.id === state.unit) + (e.key === "ArrowLeft" ? -1 : 1);
+  if (i < 0 || i >= list.length) return;
+  e.preventDefault(); goUnit(list[i].id);
+});
+// 输入停顿一下再搜索,避免每敲一个字母都整页重绘
+let qTimer = 0;
+$("#q").addEventListener("input", e => {
+  clearTimeout(qTimer);
+  qTimer = setTimeout(() => { state.q = e.target.value; render(); }, 150);
+});
 $("#hideBtn").addEventListener("click", e => {
   state.hide = !state.hide; document.body.classList.toggle("hide", state.hide);
   e.currentTarget.classList.toggle("on", state.hide); render();
@@ -602,7 +702,10 @@ $("#main").addEventListener("click", e => {
   if (a){
     const act = a.dataset.act;
     if (act === "pass"){
-      (passes[state.unit] = passes[state.unit] || []).push(Date.now()); savePasses(); render(); return;
+      // 3 秒内重复点击不算,防止连点记成两遍
+      const list = passes[state.unit] = passes[state.unit] || [];
+      if (list.length && Date.now() - list[list.length - 1] < 3000) return;
+      list.push(Date.now()); savePasses(); render(); return;
     }
     if (act === "hist"){ histPanel(); return; }
     if (act === "hclose"){ $("#phist").hidden = true; return; }
@@ -621,7 +724,7 @@ $("#main").addEventListener("click", e => {
     store.set("ky_marked", [...marked]);
     c.classList.toggle("marked", marked.has(k));
     c.querySelector(".mk").textContent = marked.has(k) ? "★" : "☆";
-    $("#tabs .review b").textContent = marked.size;
+    $("#tabs .review b").textContent = markedCount();
     return;
   }
   if (state.hide) c.classList.toggle("show");

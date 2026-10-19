@@ -1,0 +1,181 @@
+(function(){
+  const u = UNITS.find(x => x.id === "s1");
+  u.sections.push(
+    { t: "M", w: [
+      ["magazine", "n. 杂志", "阿拉伯语 makhazin(仓库)"],
+      ["mail", "n. 邮件 v. 邮寄", "古法语 male(邮袋)"],
+      ["mammal", "n. 哺乳动物", "拉丁 mamma(乳房)"],
+      ["manager", "n. 经理", "manage + -er"],
+      ["masculine", "adj. 男性的;阳刚的", "拉丁 masculus(男性)"],
+      ["mathematics", "n. 数学", "希腊 mathema(学问)"],
+      ["meadow", "n. 草地", "本族词"],
+      ["meal", "n. 一餐", "本族词"],
+      ["melon", "n. 瓜", "希腊 melon(苹果)"],
+      ["menu", "n. 菜单", "法语 menu(细目)"],
+      ["middle", "n./adj. 中间", "本族词"],
+      ["millimetre / millimeter", "n. 毫米", "milli(千分之一)+ metre"],
+      ["more", "adj./adv. 更多", "本族词", "", {
+        senses: ["more or less 或多或少", "no more than 仅仅"] }],
+      ["mosquito", "n. 蚊子", "西班牙语 mosca(苍蝇)+ -ito(小)"],
+      ["mountain", "n. 山", "拉丁 mons"],
+      ["mouse", "n. 老鼠;鼠标", "本族词", "", {
+        tip: "复数 mice" }],
+      ["movement", "n. 运动;动作", "move + -ment", "", {
+        senses: ["the civil rights movement 民权运动"] }],
+      ["movie", "n. 电影", "moving picture 的缩写"],
+      ["museum", "n. 博物馆", "希腊 mouseion(缪斯的殿堂)"],
+      ["mushroom", "n. 蘑菇 v. 迅速增长", "古法语 mousseron", "", {
+        senses: ["v. 迅速增长(熟词僻义)"] }]
+    ]},
+    { t: "N", w: [
+      ["napkin", "n. 餐巾", "古法语 nappe(桌布)+ -kin(小)"],
+      ["neck", "n. 脖子", "本族词"],
+      ["neighbor / neighbour", "n. 邻居", "near + bur(住的人)"],
+      ["neither", "pron. 两者都不", "not + either", "", {
+        senses: ["neither … nor … 既不…也不…"] }],
+      ["nephew", "n. 侄子;外甥", "拉丁 nepos"],
+      ["nickel", "n. 镍;五分硬币", "德语 Kupfernickel(铜魔)"],
+      ["nitrogen", "n. 氮", "nitre(硝石)+ -gen"],
+      ["niece", "n. 侄女;外甥女", "拉丁 neptis"],
+      ["nobody", "pron. 没有人", "no + body"],
+      ["nod", "v./n. 点头", "来源不明"],
+      ["noisy", "adj. 吵闹的", "noise + -y"],
+      ["nor", "conj. 也不", "neither 的缩略"],
+      ["northwest", "n. 西北", "north + west"],
+      ["nose", "n. 鼻子", "本族词"],
+      ["noun", "n. 名词", "拉丁 nomen(名字)"],
+      ["nurse", "n. 护士 v. 护理", "拉丁 nutrire(喂养)"],
+      ["nylon", "n. 尼龙", "商标名"]
+    ]},
+    { t: "O", w: [
+      ["oak", "n. 橡树", "本族词"],
+      ["ocean", "n. 海洋", "希腊 Okeanos(大洋神)"],
+      ["offensive", "adj. 冒犯的;进攻的 n. 进攻", "offend + -ive"],
+      ["oil", "n. 油;石油", "拉丁 oleum"],
+      ["onion", "n. 洋葱", "拉丁 unio"],
+      ["orchard", "n. 果园", "本族词"],
+      ["orchestra", "n. 管弦乐队", "希腊 orkhestra(舞池)"],
+      ["ore", "n. 矿石", "本族词"],
+      ["orphan", "n. 孤儿", "希腊 orphanos"],
+      ["ounce", "n. 盎司", "拉丁 uncia"],
+      ["oven", "n. 烤箱", "本族词"],
+      ["overcoat", "n. 大衣", "over + coat"],
+      ["owl", "n. 猫头鹰", "本族词"],
+      ["oxide", "n. 氧化物", "oxygen + -ide"],
+      ["oxygen", "n. 氧", "希腊 oxys(酸)+ -gen"]
+    ]},
+    { t: "P", w: [
+      ["packet", "n. 小包", "pack + -et"],
+      ["page", "n. 页", "拉丁 pagina"],
+      ["painting", "n. 绘画", "paint + -ing"],
+      ["palace", "n. 宫殿", "拉丁 Palatium(罗马皇宫所在的山)"],
+      ["pan", "n. 平底锅", "本族词"],
+      ["pants", "n. 裤子(美);内裤(英)", "pantaloons 的缩写"],
+      ["party", "n. 聚会;政党;一方", "古法语 partie(部分)", "", {
+        senses: ["the third party 第三方"] }],
+      ["passenger", "n. 乘客", "passage + -er"],
+      ["pasture", "n. 牧场", "拉丁 pascere(放牧)"],
+      ["patient", "n. 病人 adj. 耐心的", "拉丁 pati(忍受)"],
+      ["paw", "n. 爪子", "古法语 poue"],
+      ["pea", "n. 豌豆", "pease 误当复数后倒推"],
+      ["peace", "n. 和平", "拉丁 pax"],
+      ["peach", "n. 桃", "拉丁 persicum(波斯的果子)"],
+      ["peanut", "n. 花生", "pea + nut"],
+      ["peasant", "n. 农民", "古法语 paisant ← pays(乡下)"],
+      ["pebble", "n. 鹅卵石", "本族词"],
+      ["pendulum", "n. 钟摆", "拉丁 pendere(悬挂)"],
+      ["pepper", "n. 胡椒;辣椒", "梵语 pippali"],
+      ["percent", "n. 百分之…", "per(每)+ centum(百)"],
+      ["per cent", "n. 百分之…(英式拼法)", "同 percent"],
+      ["perhaps", "adv. 也许", "per + hap(运气)"],
+      ["person", "n. 人", "拉丁 persona(面具)", "", {
+        senses: ["in person 亲自"] }],
+      ["pet", "n. 宠物", "来源不明"],
+      ["physicist", "n. 物理学家", "physics + -ist"],
+      ["physics", "n. 物理", "希腊 physis(自然)"],
+      ["physiology", "n. 生理学", "physis + logia"],
+      ["pick", "v. 挑选;采摘", "本族词", "", {
+        senses: ["pick up 捡起;学会;好转"] }],
+      ["piece", "n. 一块;一件", "古法语 piece"],
+      ["pigeon", "n. 鸽子", "古法语 pijon"],
+      ["pillow", "n. 枕头", "拉丁 pulvinus"],
+      ["pine", "n. 松树 v. 渴望", "拉丁 pinus"],
+      ["pink", "adj. 粉红色的", "来源不明"],
+      ["pity", "n. 怜悯;遗憾", "拉丁 pietas", "", {
+        senses: ["It's a pity that… 遗憾的是…"] }],
+      ["plaintiff", "n. 原告", "古法语 plaintif(抱怨者)", "", {
+        tip: "反义 defendant 被告" }],
+      ["plan", "n./v. 计划", "法语 plan(平面图)"],
+      ["plane", "n. 飞机;平面", "拉丁 planus(平)"],
+      ["playground", "n. 操场", "play + ground"],
+      ["pleasant", "adj. 令人愉快的", "please + -ant"],
+      ["plenty", "n. 大量", "拉丁 plenus(满的)", "", {
+        senses: ["plenty of 大量的"] }],
+      ["poem", "n. 诗", "希腊 poiema(作品)"],
+      ["poet", "n. 诗人", "希腊 poietes(创作者)"],
+      ["poetry", "n. 诗歌(总称)", "poet + -ry"],
+      ["pond", "n. 池塘", "pound(围栏)的变体"],
+      ["population", "n. 人口", "拉丁 populus(人民)", "", {
+        senses: ["ageing population 老龄化人口"] }],
+      ["porch", "n. 门廊", "拉丁 porticus"],
+      ["pork", "n. 猪肉", "拉丁 porcus(猪)"],
+      ["port", "n. 港口", "拉丁 portus"],
+      ["postcard", "n. 明信片", "post + card"],
+      ["pottery", "n. 陶器", "potter + -y"],
+      ["poultry", "n. 家禽", "古法语 poule(母鸡)"],
+      ["powerful", "adj. 强大的", "power + -ful"],
+      ["predator", "n. 捕食者", "拉丁 praeda(猎物)"],
+      ["prefer", "v. 更喜欢", "pre- + ferre(带)→ 放在前面", "", {
+        senses: ["prefer A to B 喜欢 A 胜过 B"] }],
+      ["prepare", "v. 准备", "pre- + parare(准备)"],
+      ["preposition", "n. 介词", "pre- + position(放在前面的词)"],
+      ["president", "n. 总统;校长;总裁", "拉丁 praesidere(坐在前面)"],
+      ["pretend", "v. 假装", "pre- + tendere(伸)→ 伸出来给人看"],
+      ["price", "n. 价格;代价", "拉丁 pretium"],
+      ["prince", "n. 王子", "拉丁 princeps(首领)"],
+      ["princess", "n. 公主", "prince + -ess"],
+      ["print", "v. 印刷 n. 印刷品", "古法语 preinte(压出的印)"],
+      ["prison", "n. 监狱", "拉丁 prehensio(抓捕)"],
+      ["prisoner", "n. 囚犯", "prison + -er"],
+      ["professor", "n. 教授", "profess + -or(公开宣讲的人)"],
+      ["progress", "n./v. 进步;进展", "pro- + gradi(走)", "", {
+        senses: ["make progress 取得进展", "in progress 在进行中"] }],
+      ["projector", "n. 投影仪", "project + -or"],
+      ["pronoun", "n. 代词", "pro(代替)+ noun"],
+      ["pronunciation", "n. 发音", "pronounce 的名词", "", {
+        tip: "拼写是 pronunciation,不是 pronounciation" }],
+      ["prose", "n. 散文", "拉丁 prosa(直白的话)"],
+      ["pub", "n. 酒吧", "public house 的缩写"],
+      ["pupil", "n. 小学生;瞳孔", "拉丁 pupillus(孤儿、被监护人)"],
+      ["purple", "adj. 紫色的", "希腊 porphyra(骨螺紫)"],
+      ["pyramid", "n. 金字塔", "希腊 pyramis"]
+    ]},
+    { t: "Q / R", w: [
+      ["queen", "n. 女王", "本族词"],
+      ["quilt", "n. 被子", "拉丁 culcita(垫子)"],
+      ["rabbit", "n. 兔子", "中古英语 rabet"],
+      ["radar", "n. 雷达", "radio detection and ranging 的缩写"],
+      ["rainbow", "n. 彩虹", "rain + bow"],
+      ["rat", "n. 老鼠", "本族词"],
+      ["rather", "adv. 相当;宁愿", "本族词,原意“更早”", "", {
+        senses: ["would rather do 宁愿做", "rather than 而不是"] }],
+      ["razor", "n. 剃刀", "古法语 rasor ← radere(刮)"],
+      ["real", "adj. 真实的", "拉丁 res(事物)"],
+      ["really", "adv. 真正地", "real + -ly"],
+      ["record", "n. 记录;唱片 v. 记录;录制", "re- + cor(心)→ 记在心里"],
+      ["regret", "v./n. 后悔;遗憾", "古法语 regreter(哀悼)", "", {
+        tip: "regret doing 后悔做过 vs regret to do 遗憾地要做" }],
+      ["reptile", "n. 爬行动物", "拉丁 repere(爬)"],
+      ["rectangle", "n. 长方形", "拉丁 rectus(直)+ angulus"],
+      ["return", "v./n. 返回;归还 n. 回报", "re- + turn", "", {
+        senses: ["in return 作为回报"] }],
+      ["rifle", "n. 步枪", "法语 rifler(刮槽)"],
+      ["ring", "n. 戒指;环 v. 打电话;响", "本族词"],
+      ["robe", "n. 长袍", "古法语 robe"],
+      ["rocket", "n. 火箭 v. 猛涨", "意大利语 rocchetto", "", {
+        senses: ["v. 猛涨:prices rocketed"] }],
+      ["rose", "n. 玫瑰", "拉丁 rosa"],
+      ["rug", "n. 地毯", "古北欧语 rogg"]
+    ]}
+  );
+})();
